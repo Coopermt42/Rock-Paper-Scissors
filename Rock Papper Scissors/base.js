@@ -1,8 +1,6 @@
 const rock = 1;
 const paper = 2;
 const scissors = 3;
-let playerChoice = 0;
-let aiChoice = 0;
 
 // Determines the player's choice with event listeners
 document.getElementById("rock").addEventListener("click", () => playerSelect(rock));
@@ -11,8 +9,10 @@ document.getElementById("scissors").addEventListener("click", () => playerSelect
 
 // This function handles the player's choice and triggers the computer's choice
 function playerSelect(choice) {
-    playerChoice = choice;  // Save the player's choice
-    computerPicks();        // Trigger the AI's pick and determine the result
+    let playerChoice = choice;  // Save the player's choice
+    let aiChoice = computerPicks();        // Trigger the AI's pick and determine the result
+    determineWinner(playerChoice, aiChoice);  // Check the winner
+
 }
 
 // This picks a random number for the AI and assigns the AI's choice
@@ -27,10 +27,12 @@ function computerPicks() {
         aiChoice = scissors;
     }
 
-    displayComputerChoice(aiChoice);  // Display the AI's choice
-    determineWinner(playerChoice, aiChoice);  // Check the winner
+    return aiChoice
+    
+    //displayComputerChoice(aiChoice);  // Display the AI's choice
 }
 
+/*
 // This displays the computer's choice by checking the AI's choice number
 function displayComputerChoice(aiChoice) {
     let aiChoiceText = "";
@@ -51,6 +53,7 @@ function displayComputerChoice(aiChoice) {
         document.body.appendChild(aiChoiceElement);
     }
 }
+*/
 
 // This checks both the player's and AI's choices and determines the winner
 function determineWinner(playerChoice, aiChoice) {
